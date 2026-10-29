@@ -1,48 +1,27 @@
 /* ==========================================================================
-   PTSS Premium Bio Contact Page Stylesheet
-   Modern Glassmorphism, Luxury Dark Mode & Optimized for TikTok WebView
+   PTSS Clean Light BioLink Stylesheet
+   Minimalist, Modern & Optimized for TikTok In-App Browser
    ========================================================================== */
 
 :root {
-  /* Color Palette */
-  --bg-dark: #070b14;
-  --bg-card: rgba(18, 26, 44, 0.72);
-  --bg-card-hover: rgba(26, 37, 62, 0.85);
-  --bg-card-primary: linear-gradient(135deg, rgba(0, 104, 255, 0.14) 0%, rgba(3, 23, 56, 0.8) 100%);
-  --border-card: rgba(255, 255, 255, 0.08);
-  --border-card-hover: rgba(255, 255, 255, 0.18);
-  --border-primary: rgba(0, 104, 255, 0.45);
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
 
-  /* Brand Colors */
-  --zalo-blue: #0068FF;
-  --zalo-glow: rgba(0, 104, 255, 0.35);
-  --fb-blue: #1877F2;
-  --fb-glow: rgba(24, 119, 242, 0.3);
-  --tiktok-cyan: #25F4EE;
-  --tiktok-red: #FE2C55;
-  --tiktok-glow: rgba(37, 244, 238, 0.25);
-
-  /* Accents & Text */
-  --text-white: #ffffff;
-  --text-primary: #f0f4fc;
-  --text-secondary: #94a3b8;
+  --text-main: #0f172a;
   --text-muted: #64748b;
-  --accent-cyan: #38bdf8;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
+  --text-light: #94a3b8;
 
-  /* Typography */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --zalo-blue: #0068FF;
+  --fb-blue: #1877F2;
+  --tiktok-black: #000000;
 
-  /* Transitions & Shadows */
-  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.05);
-  --shadow-primary: 0 12px 35px -5px rgba(0, 104, 255, 0.35), 0 0 20px rgba(0, 104, 255, 0.2);
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --transition: all 0.2s ease-in-out;
 }
 
-/* Base Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -53,67 +32,22 @@
 html, body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  font-family: var(--font-body);
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  color: var(--text-main);
   line-height: 1.5;
-  overflow-x: hidden;
-  position: relative;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Ambient Ambient Glow Effects */
-.ambient-glow {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(120px);
-  z-index: 0;
-  opacity: 0.55;
-  animation: pulseGlow 8s infinite alternate ease-in-out;
-}
-
-.glow-1 {
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(0, 104, 255, 0.45) 0%, transparent 70%);
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.glow-2 {
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(37, 244, 238, 0.25) 0%, transparent 70%);
-  top: 35%;
-  right: -100px;
-}
-
-.glow-3 {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(254, 44, 85, 0.2) 0%, transparent 70%);
-  bottom: 10%;
-  left: -80px;
-}
-
-@keyframes pulseGlow {
-  0% { transform: scale(0.95); opacity: 0.4; }
-  100% { transform: scale(1.08); opacity: 0.65; }
-}
-
-/* TikTok In-App Browser Warning Banner */
+/* TikTok In-App Warning Banner */
 .tiktok-banner {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: linear-gradient(90deg, #1e1b10 0%, #291e0a 100%);
-  border-bottom: 1px solid rgba(245, 158, 11, 0.35);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  background: #fffbeb;
+  border-bottom: 1px solid #fde68a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   padding: 10px 16px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .tiktok-banner.hidden {
@@ -121,17 +55,17 @@ html, body {
 }
 
 .tiktok-banner-content {
-  max-width: 540px;
+  max-width: 480px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.85rem;
-  color: #fef3c7;
+  font-size: 0.82rem;
+  color: #92400e;
 }
 
 .tiktok-banner-icon {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   flex-shrink: 0;
 }
 
@@ -141,14 +75,14 @@ html, body {
 }
 
 .tiktok-banner-text b {
-  color: #fbbf24;
+  color: #78350f;
 }
 
 .tiktok-banner-close {
   background: none;
   border: none;
-  color: #fef3c7;
-  font-size: 1.5rem;
+  color: #92400e;
+  font-size: 1.4rem;
   cursor: pointer;
   padding: 0 4px;
   line-height: 1;
@@ -159,20 +93,18 @@ html, body {
   opacity: 1;
 }
 
-/* Page Layout */
+/* Page Container */
 .page-container {
-  position: relative;
-  z-index: 10;
-  max-width: 500px;
+  max-width: 460px;
   margin: 0 auto;
-  padding: 32px 20px 48px 20px;
+  padding: 40px 18px 48px 18px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 
-/* Profile Card */
-.profile-card {
+/* Profile Header */
+.profile-header {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -180,427 +112,220 @@ html, body {
   gap: 14px;
 }
 
-.avatar-wrapper {
-  position: relative;
-  width: 108px;
-  height: 108px;
+.avatar-container {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.avatar-ring {
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--zalo-blue), var(--accent-cyan), var(--tiktok-red));
-  opacity: 0.85;
-  animation: rotateRing 8s linear infinite;
-}
-
-@keyframes rotateRing {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 .profile-avatar {
-  position: relative;
-  z-index: 1;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background-color: #0b1329;
-  border: 3px solid var(--bg-dark);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  display: block;
 }
 
-.verified-badge {
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  z-index: 2;
-  width: 26px;
-  height: 26px;
-  background: linear-gradient(135deg, #0068FF, #00a8ff);
-  border-radius: 50%;
+.profile-info {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--bg-dark);
-  box-shadow: 0 2px 8px rgba(0, 104, 255, 0.6);
-}
-
-.verified-icon {
-  width: 15px;
-  height: 15px;
-}
-
-.badge-tag {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
-  border-radius: 20px;
-  background: rgba(0, 104, 255, 0.12);
-  border: 1px solid rgba(0, 104, 255, 0.3);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #60a5fa;
-  text-transform: uppercase;
-  margin-bottom: 2px;
 }
 
-.pulse-dot {
-  width: 7px;
-  height: 7px;
-  background-color: var(--accent-emerald);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--accent-emerald);
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.6; }
+.name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .profile-name {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text-white);
-  line-height: 1.2;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+}
+
+.verified-badge {
+  color: #0068FF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verified-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .profile-bio {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 90%;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  max-width: 92%;
   margin: 0 auto;
 }
 
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 14px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-}
-
-.status-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-emerald);
-  box-shadow: 0 0 10px var(--accent-emerald);
-}
-
-/* Links Section */
-.links-section {
+/* Links List */
+.links-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-/* General Link Card */
-.link-card {
-  position: relative;
-  border-radius: 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.link-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-card-hover);
-  transform: translateY(-2px);
-}
-
-.link-card:active {
-  transform: scale(0.985);
-}
-
-.card-link-wrapper {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  padding: 16px 18px;
-}
-
-.card-body {
-  display: flex;
-  align-items: center;
   gap: 14px;
 }
 
-.card-icon-wrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+.bio-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Bio Button Style (Clean White Pill/Card) */
+.bio-btn {
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  transition: var(--transition);
+}
+
+.bio-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.bio-btn:active {
+  transform: scale(0.985);
+}
+
+/* Zalo Featured Button Accent */
+.bio-btn-zalo {
+  border-color: rgba(0, 104, 255, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 104, 255, 0.08);
+}
+
+.bio-btn-zalo:hover {
+  border-color: var(--zalo-blue);
+  box-shadow: 0 8px 20px rgba(0, 104, 255, 0.14);
+}
+
+/* Icons */
+.bio-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-.zalo-bg {
-  background: linear-gradient(135deg, #0068FF 0%, #0043aa 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.zalo-icon-bg {
+  background: #f0f6ff;
 }
 
-.fb-bg {
-  background: linear-gradient(135deg, #1877F2 0%, #0c4fa8 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.fb-icon-bg {
+  background: #f0f7ff;
 }
 
-.tiktok-bg {
-  background: linear-gradient(135deg, #161823 0%, #000000 100%);
-  border: 1px solid rgba(37, 244, 238, 0.3);
+.tiktok-icon-bg {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
-.social-svg {
-  width: 32px;
-  height: 32px;
+.bio-svg {
+  width: 28px;
+  height: 28px;
 }
 
-.card-content {
+.bio-text {
   flex: 1;
   min-width: 0;
-}
-
-.card-header-row {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 3px;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.card-title {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
+.bio-title {
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: var(--text-main);
   letter-spacing: -0.2px;
 }
 
-.card-badge {
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-.zalo-badge {
-  background: rgba(0, 104, 255, 0.25);
-  color: #93c5fd;
-  border: 1px solid rgba(0, 104, 255, 0.4);
-}
-
-.fb-badge {
-  background: rgba(24, 119, 242, 0.2);
-  color: #bfdbfe;
-}
-
-.tiktok-badge {
-  background: rgba(254, 44, 85, 0.2);
-  color: #fecdd3;
-  border: 1px solid rgba(254, 44, 85, 0.3);
-}
-
-.card-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+.bio-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.card-arrow-wrap {
+.bio-arrow {
+  color: var(--text-light);
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
   transition: var(--transition);
 }
 
-.chevron-arrow {
-  width: 20px;
-  height: 20px;
-}
-
-.link-card:hover .card-arrow-wrap {
-  color: var(--text-white);
+.bio-btn:hover .bio-arrow {
+  color: var(--text-main);
   transform: translateX(3px);
 }
 
-/* ==========================================================================
-   PRIMARY VIP CARD: ZALO GROUP
-   ========================================================================== */
-.link-card-zalo.is-primary {
-  background: var(--bg-card-primary);
-  border: 1.5px solid var(--border-primary);
-  box-shadow: var(--shadow-primary);
-  padding: 20px 18px 16px 18px;
-}
-
-.link-card-zalo .card-tag {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: linear-gradient(135deg, #0068FF, #00d2ff);
-  color: #ffffff;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  padding: 3px 12px;
-  border-bottom-left-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 104, 255, 0.5);
-}
-
-.link-card-zalo .card-glow {
-  position: absolute;
-  inset: -1px;
-  border-radius: 20px;
-  background: linear-gradient(90deg, transparent, rgba(0, 104, 255, 0.3), transparent);
-  opacity: 0.6;
-  pointer-events: none;
-  animation: shineGlow 4s infinite linear;
-}
-
-@keyframes shineGlow {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.card-actions {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: var(--transition);
-  font-size: 0.95rem;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #0068FF 0%, #0099ff 100%);
-  color: #ffffff;
-  padding: 13px 20px;
-  box-shadow: 0 8px 20px rgba(0, 104, 255, 0.45);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #0059de 0%, #008be6 100%);
-  box-shadow: 0 10px 25px rgba(0, 104, 255, 0.6);
-  transform: translateY(-1px);
-}
-
-.btn-primary:active {
-  transform: scale(0.98);
-}
-
-.btn-arrow {
-  width: 18px;
-  height: 18px;
-  transition: var(--transition);
-}
-
-.btn-primary:hover .btn-arrow {
-  transform: translateX(4px);
-}
-
-.aux-actions-row {
+/* Sub Actions for Zalo Anti-Block */
+.zalo-sub-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+  padding: 0 4px;
 }
 
-.btn-aux {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  padding: 9px 12px;
-  font-size: 0.8rem;
-  border-radius: 10px;
+.sub-action-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.btn-aux:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+.sub-action-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+  border-color: var(--border-hover);
 }
 
-.btn-aux:active {
+.sub-action-btn:active {
   transform: scale(0.97);
 }
 
-.aux-icon {
-  width: 15px;
-  height: 15px;
-  color: #38bdf8;
-}
-
-/* Help / Guidance Box */
-.help-box {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 14px 16px;
-}
-
-.help-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #93c5fd;
-  margin-bottom: 6px;
-}
-
-.help-icon {
-  font-size: 1rem;
-}
-
-.help-desc {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-}
-
-.help-desc b {
-  color: var(--text-primary);
+.sub-icon {
+  width: 14px;
+  height: 14px;
+  color: #0068FF;
 }
 
 /* Page Footer */
@@ -610,26 +335,27 @@ html, body {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .share-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary);
-  padding: 8px 18px;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 7px 16px;
   border-radius: 20px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
 }
 
 .share-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: #f1f5f9;
+  color: var(--text-main);
 }
 
 .share-icon {
@@ -637,40 +363,26 @@ html, body {
   height: 14px;
 }
 
-.footer-security {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
-.lock-icon {
-  width: 13px;
-  height: 13px;
-  color: var(--accent-emerald);
-}
-
 .copyright {
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  color: var(--text-light);
 }
 
 /* ==========================================================================
-   QR CODE MODAL
+   QR MODAL (LIGHT MINIMALIST)
    ========================================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(4, 7, 15, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: fadeIn 0.25s ease-out;
+  animation: fadeIn 0.2s ease-out;
 }
 
 .modal-overlay.hidden {
@@ -680,14 +392,13 @@ html, body {
 .modal-card {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  background: #0f172a;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 360px;
+  background: #ffffff;
   border-radius: 24px;
-  padding: 28px 24px;
+  padding: 26px 20px;
   text-align: center;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeIn {
@@ -704,13 +415,13 @@ html, body {
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: #f1f5f9;
   border: none;
-  color: var(--text-secondary);
-  font-size: 1.4rem;
+  color: var(--text-muted);
+  font-size: 1.3rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -720,54 +431,37 @@ html, body {
 }
 
 .modal-close-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  background: #e2e8f0;
+  color: var(--text-main);
 }
 
 .modal-header h3 {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-white);
-  margin-top: 8px;
+  color: var(--text-main);
 }
 
 .modal-subtitle {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-top: 4px;
 }
 
-.modal-icon-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(0, 104, 255, 0.18);
-  color: #60a5fa;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-icon-badge svg {
-  width: 22px;
-  height: 22px;
-}
-
 .qr-container {
-  margin: 18px 0;
+  margin: 16px 0;
   display: flex;
   justify-content: center;
 }
 
 .qr-frame {
   position: relative;
-  width: 210px;
-  height: 210px;
+  width: 200px;
+  height: 200px;
   background: #ffffff;
-  padding: 10px;
+  padding: 8px;
+  border: 1px solid var(--border-color);
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -787,7 +481,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 0.8rem;
-  color: #475569;
+  color: var(--text-muted);
   background: #ffffff;
   border-radius: 14px;
 }
@@ -797,10 +491,10 @@ html, body {
 }
 
 .modal-steps {
-  background: rgba(255, 255, 255, 0.04);
+  background: #f8fafc;
   border-radius: 12px;
   padding: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -812,12 +506,12 @@ html, body {
   align-items: flex-start;
   gap: 8px;
   font-size: 0.78rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
 .step-item b {
-  color: #38bdf8;
+  color: var(--text-main);
 }
 
 .step-num {
@@ -838,11 +532,46 @@ html, body {
 .modal-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: #0068FF;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 104, 255, 0.25);
+}
+
+.btn-primary:hover {
+  background: #0056d6;
+}
+
+.btn-outline {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: #f1f5f9;
 }
 
 /* ==========================================================================
-   TOAST NOTIFICATION
+   TOAST NOTIFICATION (CLEAN PILL)
    ========================================================================== */
 .toast-container {
   position: fixed;
@@ -850,14 +579,11 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
-  min-width: 290px;
-  max-width: 90%;
-  background: #1e293b;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  animation: slideUpToast 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #0f172a;
+  border-radius: 30px;
+  padding: 10px 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: slideUpToast 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .toast-container.hidden {
@@ -865,63 +591,45 @@ html, body {
 }
 
 @keyframes slideUpToast {
-  from { transform: translate(-50%, 40px); opacity: 0; }
+  from { transform: translate(-50%, 30px); opacity: 0; }
   to { transform: translate(-50%, 0); opacity: 1; }
 }
 
 .toast-content {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
+  gap: 8px;
   font-size: 0.85rem;
   color: #ffffff;
+  font-weight: 500;
 }
 
 .toast-icon {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
-.toast-msg {
-  flex: 1;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.toast-progress {
-  height: 3px;
-  background: linear-gradient(90deg, #0068FF, #38bdf8);
-  width: 100%;
-  animation: toastProgress 2.8s linear forwards;
-}
-
-@keyframes toastProgress {
-  from { width: 100%; }
-  to { width: 0%; }
-}
-
-/* Responsive adjustments */
+/* Mobile responsive */
 @media (max-width: 480px) {
   .page-container {
-    padding: 24px 16px 40px 16px;
-    gap: 18px;
+    padding: 32px 16px 40px 16px;
+    gap: 20px;
+  }
+  .avatar-container {
+    width: 84px;
+    height: 84px;
   }
   .profile-name {
-    font-size: 1.55rem;
+    font-size: 1.25rem;
   }
-  .avatar-wrapper {
-    width: 96px;
-    height: 96px;
+  .bio-btn {
+    padding: 12px 14px;
   }
-  .profile-avatar {
-    width: 90px;
-    height: 90px;
+  .bio-icon-wrap {
+    width: 40px;
+    height: 40px;
   }
-  .btn-primary {
-    padding: 12px 16px;
-    font-size: 0.9rem;
-  }
-  .modal-card {
-    padding: 24px 18px;
+  .bio-svg {
+    width: 24px;
+    height: 24px;
   }
 }
