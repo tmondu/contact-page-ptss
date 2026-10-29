@@ -446,94 +446,31 @@
       });
     }
 
-    // Smart Click Assist on primary ZL CTA - Try Deep-Link first, fallback cleanly
+    // ZL CTA Click Handling (Safe from TikTok block, no custom scheme)
     if (btnZaloMain) {
-      btnZaloMain.addEventListener('click', (e) => {
-        e.preventDefault();
-        openZaloDeepLink(currentZaloUrl);
-      });
+      btnZaloMain.addEventListener('click', handleZaloClick);
     }
 
     if (modalOpenLink) {
-      modalOpenLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        openZaloDeepLink(currentZaloUrl);
-      });
+      modalOpenLink.addEventListener('click', handleZaloClick);
     }
   }
 
   /**
-   * Helper: Try to open ZL app directly via Deep-Link
-   * If deep-link fails or is blocked on TikTok iOS, show guide instead of triggering TikTok white shield
+   * Click handler for ZL button:
+   * - In TikTok iOS: Prevent white shield block by copying link and showing Safari guide
+   * - Elsewhere: Standard web navigation to https://zalo.me
    */
-  function openZaloDeepLink(fallbackUrl) {
-    const targetUrl = fallbackUrl || currentZaloUrl;
+  function handleZaloClick(e) {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
-    const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
     const isTikTok = /TikTok|musical_ly|BytedanceWebview|ByteLocale/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
-    if (!isMobile) {
-      window.open(targetUrl, '_blank');
-      return;
+    if (isTikTok && isIOS) {
+      if (e) e.preventDefault();
+      copyToClipboard(currentZaloUrl, 'Đã sao chép link ZL! Hãy mở bằng Safari theo hướng dẫn.');
+      openBrowserGuide();
     }
-
-    // Extract group ID or phone/username
-    const groupMatch = targetUrl.match(/zalo\.me\/g\/([a-zA-Z0-9_-]+)/);
-    const phoneMatch = targetUrl.match(/zalo\.me\/([a-zA-Z0-9_.-]+)/);
-
-    let deepLink = '';
-    if (groupMatch) {
-      const groupId = groupMatch[1];
-      if (isAndroid) {
-        // Android Intent directly invokes the Zalo package (com.zing.zalo)
-        deepLink = `intent://zalo.me/g/${groupId}#Intent;action=android.intent.action.VIEW;scheme=https;package=com.zing.zalo;end`;
-      } else if (isIOS) {
-        // iOS Zalo URL scheme
-        deepLink = `zalo://qr/p/${groupId}`;
-      } else {
-        deepLink = `zalo://zalo.me/g/${groupId}`;
-      }
-    } else if (phoneMatch) {
-      const target = phoneMatch[1];
-      if (isAndroid) {
-        deepLink = `intent://zalo.me/${target}#Intent;action=android.intent.action.VIEW;scheme=https;package=com.zing.zalo;end`;
-      } else {
-        deepLink = `zalo://chat?phone=${target}`;
-      }
-    } else {
-      deepLink = targetUrl;
-    }
-
-    let hasSwitchedApp = false;
-    const startTime = Date.now();
-
-    const onVisibilityChange = () => {
-      if (document.hidden) {
-        hasSwitchedApp = true;
-      }
-    };
-    document.addEventListener('visibilitychange', onVisibilityChange, { once: true });
-
-    // 1. Try deep link to launch app directly
-    window.location.href = deepLink;
-
-    // 2. Fallback: If app did not open after 1.2s
-    setTimeout(() => {
-      document.removeEventListener('visibilitychange', onVisibilityChange);
-      const elapsed = Date.now() - startTime;
-      if (!hasSwitchedApp && elapsed < 2500) {
-        if (isTikTok) {
-          // In TikTok iOS, navigating to zalo.me triggers TikTok's white shield block screen.
-          // Instead, guide the user to open Safari and copy the link.
-          copyToClipboard(targetUrl, 'Đã sao chép link ZL! Hãy mở bằng Safari theo hướng dẫn.');
-          openBrowserGuide();
-        } else {
-          window.location.href = targetUrl;
-        }
-      }
-    }, 1200);
   }
 
   // Initialize
