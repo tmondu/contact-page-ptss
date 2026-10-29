@@ -310,15 +310,86 @@
       });
     }
 
-    // Smart Click Assist on primary ZL CTA
+    // Smart Click Assist on primary ZL CTA - Try Deep-Link first, fallback to standard URL
     if (btnZaloMain) {
-      btnZaloMain.addEventListener('click', () => {
-        // If in TikTok, remind user gently if redirect fails
-        setTimeout(() => {
-          showToast('Nếu không tự mở ZL, hãy bấm "Sao chép link ZL" hoặc "Mã QR" nhé!');
-        }, 1200);
+      btnZaloMain.addEventListener('click', (e) => {
+        e.preventDefault();
+        openZaloDeepLink(currentZaloUrl);
       });
     }
+
+    if (modalOpenLink) {
+      modalOpenLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openZaloDeepLink(currentZaloUrl);
+      });
+    }
+  }
+
+  /**
+   * Helper: Try to open ZL app directly via Deep-Link
+   * If deep-link fails or is blocked, gracefully fall back to standard URL
+   */
+  function openZaloDeepLink(fallbackUrl) {
+    const targetUrl = fallbackUrl || currentZaloUrl;
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
+    const isAndroid = /Android/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+    if (!isMobile) {
+      window.open(targetUrl, '_blank');
+      return;
+    }
+
+    // Extract group ID or phone/username
+    const groupMatch = targetUrl.match(/zalo\.me\/g\/([a-zA-Z0-9_-]+)/);
+    const phoneMatch = targetUrl.match(/zalo\.me\/([a-zA-Z0-9_.-]+)/);
+
+    let deepLink = '';
+    if (groupMatch) {
+      const groupId = groupMatch[1];
+      if (isAndroid) {
+        // Android Intent directly invokes the Zalo package (com.zing.zalo)
+        deepLink = `intent://zalo.me/g/${groupId}#Intent;action=android.intent.action.VIEW;scheme=https;package=com.zing.zalo;end`;
+      } else if (isIOS) {
+        // iOS Zalo URL scheme
+        deepLink = `zalo://qr/p/${groupId}`;
+      } else {
+        deepLink = `zalo://zalo.me/g/${groupId}`;
+      }
+    } else if (phoneMatch) {
+      const target = phoneMatch[1];
+      if (isAndroid) {
+        deepLink = `intent://zalo.me/${target}#Intent;action=android.intent.action.VIEW;scheme=https;package=com.zing.zalo;end`;
+      } else {
+        deepLink = `zalo://chat?phone=${target}`;
+      }
+    } else {
+      deepLink = targetUrl;
+    }
+
+    let hasSwitchedApp = false;
+    const startTime = Date.now();
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        hasSwitchedApp = true;
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+
+    // 1. Try deep link to launch app directly
+    window.location.href = deepLink;
+
+    // 2. Fallback: If app did not open after 1.2s, navigate to standard URL as before
+    setTimeout(() => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      const elapsed = Date.now() - startTime;
+      if (!hasSwitchedApp && elapsed < 2500) {
+        window.location.href = targetUrl;
+      }
+    }, 1200);
   }
 
   // Initialize
