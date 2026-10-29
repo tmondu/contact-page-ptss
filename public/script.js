@@ -29,6 +29,9 @@
   const btnSharePage = document.getElementById('btn-share-page');
   const btnFbMain = document.getElementById('btn-fb-main');
   const btnTiktokMain = document.getElementById('btn-tiktok-main');
+  const btnOpenBrowser = document.getElementById('btn-open-browser');
+  const browserGuideOverlay = document.getElementById('browser-guide-overlay');
+  const btnCloseGuide = document.getElementById('btn-close-guide');
 
   /**
    * 1. Detect In-App Browsers (TikTok, Facebook, Instagram Webview)
@@ -236,9 +239,57 @@
   }
 
   /**
-   * 7. Setup Event Listeners
+   * 7. Safari / External Browser Guide Management
+   */
+  function openBrowserGuide() {
+    if (!browserGuideOverlay) return;
+    browserGuideOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBrowserGuide() {
+    if (!browserGuideOverlay) return;
+    browserGuideOverlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function handleOpenBrowserClick(e) {
+    if (e) e.preventDefault();
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /Android/i.test(ua);
+
+    if (isAndroid) {
+      // Direct intent to Chrome browser on Android
+      const currentHostAndPath = window.location.host + window.location.pathname + window.location.search;
+      window.location.href = `intent://${currentHostAndPath}#Intent;scheme=https;package=com.android.chrome;end`;
+      return;
+    }
+
+    // On iOS (iPhone) and other webviews, guide user to TikTok's ••• menu
+    openBrowserGuide();
+  }
+
+  /**
+   * 8. Setup Event Listeners
    */
   function setupEventListeners() {
+    // External browser button & guide
+    if (btnOpenBrowser) {
+      btnOpenBrowser.addEventListener('click', handleOpenBrowserClick);
+    }
+
+    if (btnCloseGuide) {
+      btnCloseGuide.addEventListener('click', closeBrowserGuide);
+    }
+
+    if (browserGuideOverlay) {
+      browserGuideOverlay.addEventListener('click', (e) => {
+        if (e.target === browserGuideOverlay) {
+          closeBrowserGuide();
+        }
+      });
+    }
+
     // Copy ZL Link buttons
     if (btnCopyZalo) {
       btnCopyZalo.addEventListener('click', (e) => {
@@ -280,10 +331,15 @@
       });
     }
 
-    // Keyboard support: Escape closes modal
+    // Keyboard support: Escape closes modals
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && qrModal && !qrModal.classList.contains('hidden')) {
-        closeQrModal();
+      if (e.key === 'Escape') {
+        if (qrModal && !qrModal.classList.contains('hidden')) {
+          closeQrModal();
+        }
+        if (browserGuideOverlay && !browserGuideOverlay.classList.contains('hidden')) {
+          closeBrowserGuide();
+        }
       }
     });
 
@@ -310,7 +366,7 @@
       });
     }
 
-    // Smart Click Assist on primary ZL CTA - Try Deep-Link first, fallback to standard URL
+    // Smart Click Assist on primary ZL CTA - Try Deep-Link first, fallback cleanly
     if (btnZaloMain) {
       btnZaloMain.addEventListener('click', (e) => {
         e.preventDefault();
@@ -328,7 +384,7 @@
 
   /**
    * Helper: Try to open ZL app directly via Deep-Link
-   * If deep-link fails or is blocked, gracefully fall back to standard URL
+   * If deep-link fails or is blocked on TikTok iOS, show guide instead of triggering TikTok white shield
    */
   function openZaloDeepLink(fallbackUrl) {
     const targetUrl = fallbackUrl || currentZaloUrl;
@@ -336,6 +392,7 @@
     const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
     const isAndroid = /Android/i.test(ua);
     const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    const isTikTok = /TikTok|musical_ly|BytedanceWebview|ByteLocale/i.test(ua);
 
     if (!isMobile) {
       window.open(targetUrl, '_blank');
@@ -382,12 +439,19 @@
     // 1. Try deep link to launch app directly
     window.location.href = deepLink;
 
-    // 2. Fallback: If app did not open after 1.2s, navigate to standard URL as before
+    // 2. Fallback: If app did not open after 1.2s
     setTimeout(() => {
       document.removeEventListener('visibilitychange', onVisibilityChange);
       const elapsed = Date.now() - startTime;
       if (!hasSwitchedApp && elapsed < 2500) {
-        window.location.href = targetUrl;
+        if (isTikTok) {
+          // In TikTok iOS, navigating to zalo.me triggers TikTok's white shield block screen.
+          // Instead, guide the user to open Safari and copy the link.
+          copyToClipboard(targetUrl, 'Đã sao chép link ZL! Hãy mở bằng Safari theo hướng dẫn.');
+          openBrowserGuide();
+        } else {
+          window.location.href = targetUrl;
+        }
       }
     }, 1200);
   }

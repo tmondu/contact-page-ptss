@@ -43,7 +43,7 @@
   <div id="tiktok-banner" class="tiktok-banner hidden">
     <div class="tiktok-banner-content">
       <div class="tiktok-banner-text">
-        Mẹo vào ZL không bị chặn: Bấm dấu <b>•••</b> ở góc phải trên ➔ Chọn <b>"Mở trong trình duyệt"</b> (Safari / Chrome).
+        Bấm dấu <b>•••</b> góc trên phải ➔ Chọn <b>"Mở trong trình duyệt"</b> để vào ZL nhanh nhất.
       </div>
       <button class="tiktok-banner-close" id="close-banner" aria-label="Đóng">&times;</button>
     </div>
@@ -155,6 +155,23 @@
         </a>
       </div>
 
+      <!-- 4. Nút Mở bằng Trình duyệt ngoài (Safari / Chrome) -->
+      <div class="bio-item" id="card-browser">
+        <button type="button" class="bio-btn bio-btn-browser" id="btn-open-browser">
+          <div class="bio-text">
+            <span class="bio-title">Mở bằng trình duyệt ngoài</span>
+            <span class="bio-desc">Safari hoặc Chrome (khuyên dùng)</span>
+          </div>
+          <div class="bio-arrow">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+        </button>
+      </div>
+
     </section>
 
     <!-- Page Footer -->
@@ -166,6 +183,24 @@
       <p class="copyright">© 2026 PThamSS</p>
     </footer>
   </main>
+
+  <!-- Hướng dẫn mở Safari / Trình duyệt ngoài cho iPhone -->
+  <div id="browser-guide-overlay" class="guide-overlay hidden">
+    <div class="guide-arrow-container">
+      <div class="guide-arrow">↗</div>
+      <div class="guide-arrow-label">Bấm ••• ở đây</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-content">
+        <h3>Mở bằng trình duyệt ngoài</h3>
+        <p class="guide-text">
+          1. Bấm dấu <b>•••</b> ở góc trên bên phải<br>
+          2. Chọn <b>"Mở trong trình duyệt"</b>
+        </p>
+        <button type="button" class="btn btn-primary" id="btn-close-guide">Đã hiểu</button>
+      </div>
+    </div>
+  </div>
 
   <!-- QR Code Modal (Light Minimalist) -->
   <div id="qr-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-qr-title">

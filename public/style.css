@@ -604,3 +604,112 @@ html, body {
     padding: 14px 16px;
   }
 }
+
+/* External Browser Button */
+.bio-btn-browser {
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  color: var(--text-main);
+  cursor: pointer;
+  width: 100%;
+}
+
+.bio-btn-browser:hover {
+  background: #ffffff;
+  border-color: #0068FF;
+}
+
+/* Safari Breakout Guide Overlay */
+.guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.guide-overlay.hidden {
+  display: none;
+}
+
+.guide-arrow-container {
+  position: absolute;
+  top: 10px;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #ffffff;
+  animation: bounceArrow 1.2s infinite ease-in-out;
+}
+
+.guide-arrow {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #38bdf8;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8));
+}
+
+.guide-arrow-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin-top: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(4px, -6px); }
+}
+
+.guide-card {
+  margin-top: 90px;
+  width: 100%;
+  max-width: 330px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.guide-content h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.guide-text {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.6;
+  text-align: left;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.guide-text b {
+  color: #0068FF;
+}
+
+.guide-content .btn {
+  width: 100%;
+}
+
