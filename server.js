@@ -9,14 +9,14 @@ const PORT = process.env.PORT || 3000;
 const config = {
   brandName: process.env.BRAND_NAME || 'PThamSS',
   badgeText: process.env.BADGE_TEXT || 'Kênh Liên Hệ & Hỗ Trợ Chính Thức',
-  bioDescription: process.env.BIO_DESC || 'Chào mừng bạn! Kết nối với chúng mình qua Nhóm Zalo, Facebook và kênh TikTok bên dưới để nhận hỗ trợ nhanh nhất.',
+  bioDescription: process.env.BIO_DESC || 'Chào mừng bạn! Kết nối với chúng mình qua Nhóm ZL, Facebook và kênh TikTok bên dưới để nhận hỗ trợ nhanh nhất.',
   avatarUrl: process.env.AVATAR_URL || '/assets/avatar.png',
   verified: process.env.VERIFIED !== 'false',
 
   // Channels
   links: {
     zaloGroup: {
-      title: 'Tham Gia Nhóm Zalo',
+      title: 'Tham Gia Nhóm ZL',
       subtitle: 'Cộng đồng thảo luận, giải đáp & nhận thông báo mới',
       url: process.env.ZALO_GROUP_URL || 'https://zalo.me/g/uqw94c3seuayvmlji6lp',
       badge: 'Cộng đồng chính',
@@ -40,7 +40,7 @@ const config = {
   },
 
   hotline: process.env.HOTLINE || '',
-  noticeText: process.env.NOTICE_TEXT || '⚡ Nhóm Zalo hỗ trợ 24/7. Nếu TikTok chặn mở app, bạn chỉ cần bấm "Sao chép link" hoặc "Quét mã QR" bên dưới!'
+  noticeText: process.env.NOTICE_TEXT || '⚡ Nhóm ZL hỗ trợ 24/7. Nếu TikTok chặn mở app, bạn chỉ cần bấm "Sao chép link" hoặc "Quét mã QR" bên dưới!'
 };
 
 // Security headers

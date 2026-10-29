@@ -6,19 +6,19 @@
 window.APP_CONFIG = {
   brandName: "PThamSS",
   badgeText: "Kênh Liên Hệ Chính Thức",
-  bioDescription: "Chào mừng bạn! Kết nối với chúng mình qua Nhóm Zalo, Facebook và kênh TikTok bên dưới để nhận hỗ trợ nhanh nhất.",
+  bioDescription: "Chào mừng bạn! Kết nối với chúng mình qua Nhóm ZL, Facebook và kênh TikTok bên dưới để nhận hỗ trợ nhanh nhất.",
   avatarUrl: "/assets/avatar.png",
-  verified: true,
-
+  verified: false,
+  
   links: {
-    // 1. Nhóm Zalo (Kênh chính)
+    // 1. Nhóm ZL (Kênh chính)
     zaloGroup: {
-      title: "Tham Gia Nhóm Zalo",
+      title: "Tham Gia Nhóm ZL",
       subtitle: "Cộng đồng thảo luận, giải đáp & nhận thông báo mới",
       url: "https://zalo.me/g/uqw94c3seuayvmlji6lp",
       badge: "Cộng đồng chính"
     },
-
+    
     // 2. Kênh Facebook
     facebook: {
       title: "Kết Nối Facebook",
@@ -26,7 +26,7 @@ window.APP_CONFIG = {
       url: "https://facebook.com",
       badge: "Facebook"
     },
-
+    
     // 3. Kênh TikTok
     tiktok: {
       title: "Theo Dõi Kênh TikTok",
@@ -36,5 +36,5 @@ window.APP_CONFIG = {
     }
   },
 
-  noticeText: "Trang liên hệ được thiết kế riêng giúp bạn truy cập trực tiếp từ TikTok mà không bị chặn link. Nếu gặp sự cố, bạn chỉ cần bấm nút \"Sao chép link\" và dán vào Zalo là vào được ngay!"
+  noticeText: "Trang liên hệ được thiết kế riêng giúp bạn truy cập trực tiếp từ TikTok mà không bị chặn link. Nếu gặp sự cố, bạn chỉ cần bấm nút \"Sao chép link\" và dán vào ZL là vào được ngay!"
 };

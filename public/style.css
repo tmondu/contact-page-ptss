@@ -206,6 +206,17 @@ html, body {
   flex-shrink: 0;
 }
 
+.zl-icon-bg {
+  background: #f0f6ff;
+}
+
+.bio-custom-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
 .zalo-icon-bg {
   background: #f0f6ff;
 }

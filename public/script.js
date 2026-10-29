@@ -77,7 +77,7 @@
     if (appConfig.brandName) {
       const nameEl = document.getElementById('profile-name');
       if (nameEl) nameEl.textContent = appConfig.brandName;
-      document.title = `${appConfig.brandName} - Kênh Liên Hệ Chính Thức | Nhóm Zalo, Facebook, TikTok`;
+      document.title = `${appConfig.brandName} - Kênh Liên Hệ Chính Thức | Nhóm ZL, Facebook, TikTok`;
     }
 
     if (appConfig.badgeText) {
@@ -239,13 +239,13 @@
    * 7. Setup Event Listeners
    */
   function setupEventListeners() {
-    // Copy Zalo Link buttons
+    // Copy ZL Link buttons
     if (btnCopyZalo) {
       btnCopyZalo.addEventListener('click', (e) => {
         e.preventDefault();
         copyToClipboard(
           currentZaloUrl,
-          'Đã sao chép link nhóm Zalo! Bạn mở app Zalo dán vào tin nhắn là vào được ngay nhé.'
+          'Đã sao chép link nhóm ZL! Bạn mở app dán vào tin nhắn là vào được ngay nhé.'
         );
       });
     }
@@ -255,7 +255,7 @@
         e.preventDefault();
         copyToClipboard(
           currentZaloUrl,
-          'Đã sao chép link nhóm Zalo!'
+          'Đã sao chép link nhóm ZL!'
         );
       });
     }
@@ -310,12 +310,12 @@
       });
     }
 
-    // Smart Click Assist on primary Zalo CTA
+    // Smart Click Assist on primary ZL CTA
     if (btnZaloMain) {
       btnZaloMain.addEventListener('click', () => {
         // If in TikTok, remind user gently if redirect fails
         setTimeout(() => {
-          showToast('💡 Nếu không tự mở Zalo, hãy bấm "Sao chép link" hoặc "Mã QR" nhé!');
+          showToast('Nếu không tự mở ZL, hãy bấm "Sao chép link ZL" hoặc "Mã QR" nhé!');
         }, 1200);
       });
     }
