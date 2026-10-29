@@ -712,31 +712,55 @@ html, body {
   flex-direction: column;
   align-items: flex-end;
   color: #ffffff;
-  animation: bounceArrow 1.2s infinite ease-in-out;
+  pointer-events: none;
 }
 
 .guide-arrow {
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   line-height: 1;
   font-weight: 800;
   color: #38bdf8;
-  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8));
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
+  -webkit-filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
+  display: inline-block;
+  will-change: transform;
+  -webkit-animation: bounceArrow 1.1s infinite ease-in-out;
+  animation: bounceArrow 1.1s infinite ease-in-out;
 }
 
 .guide-arrow-label {
   font-size: 0.82rem;
   font-weight: 700;
   color: #f1f5f9;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   padding: 4px 10px;
   border-radius: 8px;
-  margin-top: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@-webkit-keyframes bounceArrow {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    -webkit-transform: translate3d(6px, -10px, 0) scale(1.15);
+    transform: translate3d(6px, -10px, 0) scale(1.15);
+  }
 }
 
 @keyframes bounceArrow {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(4px, -6px); }
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    -webkit-transform: translate3d(6px, -10px, 0) scale(1.15);
+    transform: translate3d(6px, -10px, 0) scale(1.15);
+  }
 }
 
 .guide-card {
