@@ -159,17 +159,16 @@ html, body {
   gap: 8px;
 }
 
-/* Bio Button Style (Centered, Clean Minimalist) */
+/* Bio Button Style (Clean Minimalist with Brand Logos) */
 .bio-btn {
   text-decoration: none;
   background: var(--bg-card);
   border: 1.5px solid var(--border-color);
   border-radius: 18px;
-  padding: 16px 20px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  gap: 14px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
   transition: var(--transition);
 }
@@ -196,25 +195,73 @@ html, body {
   box-shadow: 0 8px 20px rgba(0, 104, 255, 0.14);
 }
 
-.bio-text {
+/* Brand Logo Wrappers */
+.bio-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  width: 100%;
+  flex-shrink: 0;
+}
+
+.zalo-icon-bg {
+  background: #f0f6ff;
+}
+
+.fb-icon-bg {
+  background: #f0f7ff;
+}
+
+.tiktok-icon-bg {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.bio-svg {
+  width: 28px;
+  height: 28px;
+}
+
+.bio-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .bio-title {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.2px;
 }
 
 .bio-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bio-arrow {
+  color: var(--text-light);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.bio-btn:hover .bio-arrow {
+  color: var(--text-main);
+  transform: translateX(3px);
 }
 
 /* Sub Actions for Zalo Anti-Block */

@@ -175,9 +175,9 @@
     }
 
     if (success) {
-      showToast(customMessage || '✅ Đã sao chép liên kết vào bộ nhớ tạm!');
+      showToast(customMessage || 'Đã sao chép liên kết vào bộ nhớ tạm!');
     } else {
-      showToast('⚠️ Không thể tự động sao chép. Hãy chọn link và copy thủ công.');
+      showToast('Không thể tự động sao chép. Hãy chọn link và copy thủ công.');
     }
   }
 
@@ -245,7 +245,7 @@
         e.preventDefault();
         copyToClipboard(
           currentZaloUrl,
-          '✅ Đã sao chép link nhóm Zalo! Bạn mở app Zalo dán vào tin nhắn là vào được ngay nhé.'
+          'Đã sao chép link nhóm Zalo! Bạn mở app Zalo dán vào tin nhắn là vào được ngay nhé.'
         );
       });
     }
@@ -255,7 +255,7 @@
         e.preventDefault();
         copyToClipboard(
           currentZaloUrl,
-          '✅ Đã sao chép link nhóm Zalo!'
+          'Đã sao chép link nhóm Zalo!'
         );
       });
     }
@@ -301,11 +301,11 @@
             await navigator.share(shareData);
           } catch (err) {
             if (err.name !== 'AbortError') {
-              copyToClipboard(window.location.href, '✅ Đã sao chép liên kết trang!');
+              copyToClipboard(window.location.href, 'Đã sao chép liên kết trang!');
             }
           }
         } else {
-          copyToClipboard(window.location.href, '✅ Đã sao chép liên kết trang vào bộ nhớ tạm!');
+          copyToClipboard(window.location.href, 'Đã sao chép liên kết trang vào bộ nhớ tạm!');
         }
       });
     }
