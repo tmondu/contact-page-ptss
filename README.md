@@ -52,8 +52,7 @@ git commit -m "feat: initial contact bio page"
 ```
 2. Tạo 1 repository mới trên GitHub (ví dụ: `contact-page-ptss`), sau đó đẩy code lên:
 ```bash
-git branch -M main
-git remote add origin https://github.com/<tai-khoan-cua-ban>/<ten-repo>.git
+git remote add origin https://github.com/tmondu/contact-page-ptss.git
 git push -u origin main
 ```
 
@@ -65,10 +64,10 @@ git push -u origin main
 
 ### Bước 3: Cấu hình Biến Môi Trường (Variables) trên Railway (Tùy chọn)
 Vào tab **Variables** trong service của bạn trên Railway và thêm các biến bạn muốn:
-- `ZALO_GROUP_URL`: Link nhóm Zalo của bạn (mặc định: `https://zalo.me/g/uqw94c3seuayvmlji6lp`)
+- `ZALO_GROUP_URL`: Link nhóm ZL của bạn (mặc định: `https://zalo.me/g/uqw94c3seuayvmlji6lp`)
 - `FACEBOOK_URL`: Link Facebook cá nhân hoặc Fanpage
 - `TIKTOK_URL`: Link kênh TikTok của bạn
-- `BRAND_NAME`: Tên thương hiệu hiển thị (VD: `PTSS Community`)
+- `BRAND_NAME`: Tên thương hiệu hiển thị (VD: `PThamSS`)
 
 ### Bước 4: Gắn Tên Miền Riêng Của Bạn (Custom Domain)
 1. Trong dashboard của service trên Railway, vào tab **Settings** ➔ kéo xuống mục **Custom Domains**.
