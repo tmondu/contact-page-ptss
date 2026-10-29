@@ -41,8 +41,21 @@
   const btnCloseGuide = document.getElementById('btn-close-guide');
 
   /**
-   * 1. Detect In-App Browsers (TikTok, Facebook, Instagram Webview)
+   * 1. Detect In-App Browsers (TikTok Webview) & Show Floating Bubble Guide
    */
+  let bannerDismissTimeout = null;
+
+  function dismissTikTokBanner() {
+    if (!tiktokBanner || tiktokBanner.classList.contains('hidden') || tiktokBanner.classList.contains('bubble-suck-up')) return;
+    if (bannerDismissTimeout) clearTimeout(bannerDismissTimeout);
+    tiktokBanner.classList.add('bubble-suck-up');
+    sessionStorage.setItem('ptss_tiktok_banner_dismissed', 'true');
+    setTimeout(() => {
+      tiktokBanner.classList.add('hidden');
+      tiktokBanner.classList.remove('bubble-suck-up');
+    }, 650);
+  }
+
   function checkInAppBrowser() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isTikTok = /TikTok|musical_ly|BytedanceWebview|ByteLocale/i.test(ua);
@@ -50,12 +63,23 @@
 
     if (isTikTok && !isDismissed && tiktokBanner) {
       tiktokBanner.classList.remove('hidden');
+
+      // Auto suck-up like a bubble after 4.2 seconds
+      bannerDismissTimeout = setTimeout(() => {
+        dismissTikTokBanner();
+      }, 4200);
     }
 
     if (closeBannerBtn) {
-      closeBannerBtn.addEventListener('click', () => {
-        tiktokBanner.classList.add('hidden');
-        sessionStorage.setItem('ptss_tiktok_banner_dismissed', 'true');
+      closeBannerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dismissTikTokBanner();
+      });
+    }
+
+    if (tiktokBanner) {
+      tiktokBanner.addEventListener('click', () => {
+        dismissTikTokBanner();
       });
     }
   }

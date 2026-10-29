@@ -37,52 +37,115 @@ html, body {
 }
 
 /* TikTok In-App Warning Banner */
+/* TikTok In-App Floating Bubble Guide */
 .tiktok-banner {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #fffbeb;
-  border-bottom: 1px solid #fde68a;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 10px 16px;
+  position: fixed;
+  top: 10px;
+  right: 14px;
+  z-index: 2500;
+  max-width: 310px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(0, 104, 255, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(0, 104, 255, 0.16), 0 3px 10px rgba(0, 0, 0, 0.06);
+  padding: 9px 14px;
+  transform-origin: top right;
+  animation: bubbleFloatIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tiktok-banner:active {
+  transform: scale(0.97);
 }
 
 .tiktok-banner.hidden {
-  display: none;
+  display: none !important;
+}
+
+.tiktok-banner.bubble-suck-up {
+  animation: bubbleSuckUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  pointer-events: none;
 }
 
 .tiktok-banner-content {
-  max-width: 480px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.82rem;
-  color: #92400e;
 }
 
 .tiktok-banner-text {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+}
+
+.banner-line {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e293b;
   line-height: 1.35;
 }
 
-.tiktok-banner-text b {
-  color: #78350f;
+.banner-line b {
+  color: #0068FF;
 }
 
 .tiktok-banner-close {
-  background: none;
+  background: #f1f5f9;
   border: none;
-  color: #92400e;
-  font-size: 1.4rem;
+  color: #64748b;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  opacity: 0.7;
+  flex-shrink: 0;
+  transition: var(--transition);
 }
 
 .tiktok-banner-close:hover {
-  opacity: 1;
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+@keyframes bubbleFloatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bubbleSuckUp {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  25% {
+    transform: scale(0.92, 1.08) translate(15px, -6px);
+  }
+  65% {
+    opacity: 0.7;
+    transform: scale(0.4) translate(55px, -24px);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.04) translate(90px, -42px);
+    filter: blur(5px);
+  }
 }
 
 /* Page Container */
