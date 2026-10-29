@@ -210,7 +210,7 @@
 
     if (qrImage) {
       if (qrLoading) qrLoading.classList.remove('hidden');
-      
+
       const qrApiUrl = `/api/qr?text=${encodeURIComponent(currentZaloUrl)}`;
       qrImage.src = qrApiUrl;
 
@@ -291,7 +291,7 @@
     if (btnSharePage) {
       btnSharePage.addEventListener('click', async () => {
         const shareData = {
-          title: appConfig.brandName || 'PTSS Community',
+          title: appConfig.brandName || 'PThamSS',
           text: appConfig.bioDescription || 'Kênh liên hệ chính thức',
           url: window.location.href
         };

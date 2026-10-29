@@ -7,12 +7,12 @@ const PORT = process.env.PORT || 3000;
 
 // Default configuration with fallback
 const config = {
-  brandName: process.env.BRAND_NAME || 'PTSS Community',
+  brandName: process.env.BRAND_NAME || 'PThamSS',
   badgeText: process.env.BADGE_TEXT || 'Kênh Liên Hệ & Hỗ Trợ Chính Thức',
   bioDescription: process.env.BIO_DESC || 'Chào mừng bạn! Kết nối với chúng mình qua Nhóm Zalo, Facebook và kênh TikTok bên dưới để nhận hỗ trợ nhanh nhất.',
   avatarUrl: process.env.AVATAR_URL || '/assets/avatar.png',
   verified: process.env.VERIFIED !== 'false',
-  
+
   // Channels
   links: {
     zaloGroup: {
@@ -38,7 +38,7 @@ const config = {
       isPrimary: false
     }
   },
-  
+
   hotline: process.env.HOTLINE || '',
   noticeText: process.env.NOTICE_TEXT || '⚡ Nhóm Zalo hỗ trợ 24/7. Nếu TikTok chặn mở app, bạn chỉ cần bấm "Sao chép link" hoặc "Quét mã QR" bên dưới!'
 };

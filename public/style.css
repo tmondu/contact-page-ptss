@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PTSS Clean Light BioLink Stylesheet
+   PThamSS Clean Light BioLink Stylesheet (No Icons)
    Minimalist, Modern & Optimized for TikTok In-App Browser
    ========================================================================== */
 
@@ -15,9 +15,6 @@
   --text-light: #94a3b8;
 
   --zalo-blue: #0068FF;
-  --fb-blue: #1877F2;
-  --tiktok-black: #000000;
-
   --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --transition: all 0.2s ease-in-out;
 }
@@ -62,11 +59,6 @@ html, body {
   gap: 10px;
   font-size: 0.82rem;
   color: #92400e;
-}
-
-.tiktok-banner-icon {
-  font-size: 1.15rem;
-  flex-shrink: 0;
 }
 
 .tiktok-banner-text {
@@ -139,29 +131,11 @@ html, body {
   gap: 6px;
 }
 
-.name-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .profile-name {
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.3px;
-}
-
-.verified-badge {
-  color: #0068FF;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.verified-icon {
-  width: 20px;
-  height: 20px;
 }
 
 .profile-bio {
@@ -185,16 +159,17 @@ html, body {
   gap: 8px;
 }
 
-/* Bio Button Style (Clean White Pill/Card) */
+/* Bio Button Style (Centered, Clean Minimalist) */
 .bio-btn {
   text-decoration: none;
   background: var(--bg-card);
   border: 1.5px solid var(--border-color);
   border-radius: 18px;
-  padding: 14px 16px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  text-align: center;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
   transition: var(--transition);
 }
@@ -221,71 +196,25 @@ html, body {
   box-shadow: 0 8px 20px rgba(0, 104, 255, 0.14);
 }
 
-/* Icons */
-.bio-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.zalo-icon-bg {
-  background: #f0f6ff;
-}
-
-.fb-icon-bg {
-  background: #f0f7ff;
-}
-
-.tiktok-icon-bg {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-}
-
-.bio-svg {
-  width: 28px;
-  height: 28px;
-}
-
 .bio-text {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 100%;
 }
 
 .bio-title {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.2px;
 }
 
 .bio-desc {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.bio-arrow {
-  color: var(--text-light);
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-.bio-btn:hover .bio-arrow {
-  color: var(--text-main);
-  transform: translateX(3px);
 }
 
 /* Sub Actions for Zalo Anti-Block */
@@ -300,14 +229,13 @@ html, body {
   background: #ffffff;
   border: 1px solid var(--border-color);
   color: var(--text-muted);
-  padding: 8px 12px;
-  font-size: 0.78rem;
+  padding: 9px 12px;
+  font-size: 0.8rem;
   font-weight: 600;
   border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   cursor: pointer;
   transition: var(--transition);
 }
@@ -320,12 +248,6 @@ html, body {
 
 .sub-action-btn:active {
   transform: scale(0.97);
-}
-
-.sub-icon {
-  width: 14px;
-  height: 14px;
-  color: #0068FF;
 }
 
 /* Page Footer */
@@ -341,13 +263,13 @@ html, body {
 .share-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   background: #ffffff;
   border: 1px solid var(--border-color);
   color: var(--text-muted);
-  padding: 7px 16px;
+  padding: 8px 18px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
@@ -356,11 +278,6 @@ html, body {
 .share-btn:hover {
   background: #f1f5f9;
   color: var(--text-main);
-}
-
-.share-icon {
-  width: 14px;
-  height: 14px;
 }
 
 .copyright {
@@ -598,14 +515,10 @@ html, body {
 .toast-content {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   font-size: 0.85rem;
   color: #ffffff;
   font-weight: 500;
-}
-
-.toast-icon {
-  font-size: 0.95rem;
 }
 
 /* Mobile responsive */
@@ -622,14 +535,6 @@ html, body {
     font-size: 1.25rem;
   }
   .bio-btn {
-    padding: 12px 14px;
-  }
-  .bio-icon-wrap {
-    width: 40px;
-    height: 40px;
-  }
-  .bio-svg {
-    width: 24px;
-    height: 24px;
+    padding: 14px 16px;
   }
 }

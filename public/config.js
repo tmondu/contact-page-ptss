@@ -4,12 +4,12 @@
  * hoặc thiết lập qua Biến môi trường (Environment Variables) trên Railway!
  */
 window.APP_CONFIG = {
-  brandName: "PTSS Community",
+  brandName: "PThamSS",
   badgeText: "Kênh Liên Hệ Chính Thức",
   bioDescription: "Chào mừng bạn! Kết nối với chúng mình qua Nhóm Zalo, Facebook và kênh TikTok bên dưới để nhận hỗ trợ nhanh nhất.",
   avatarUrl: "/assets/avatar.png",
   verified: true,
-  
+
   links: {
     // 1. Nhóm Zalo (Kênh chính)
     zaloGroup: {
@@ -18,7 +18,7 @@ window.APP_CONFIG = {
       url: "https://zalo.me/g/uqw94c3seuayvmlji6lp",
       badge: "Cộng đồng chính"
     },
-    
+
     // 2. Kênh Facebook
     facebook: {
       title: "Kết Nối Facebook",
@@ -26,7 +26,7 @@ window.APP_CONFIG = {
       url: "https://facebook.com",
       badge: "Facebook"
     },
-    
+
     // 3. Kênh TikTok
     tiktok: {
       title: "Theo Dõi Kênh TikTok",
