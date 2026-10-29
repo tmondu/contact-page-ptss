@@ -123,6 +123,16 @@
             </svg>
           </div>
         </a>
+
+        <!-- Nút phụ Facebook: Sao chép link & Xem mã QR -->
+        <div class="bio-sub-actions">
+          <button type="button" class="sub-action-btn" id="btn-copy-fb" title="Sao chép link Facebook">
+            <span>Sao chép link FB</span>
+          </button>
+          <button type="button" class="sub-action-btn" id="btn-qr-fb" title="Xem mã QR Facebook">
+            <span>Mã QR FB</span>
+          </button>
+        </div>
       </div>
 
       <!-- 3. TikTok - Có Logo TikTok -->
@@ -153,6 +163,16 @@
             </svg>
           </div>
         </a>
+
+        <!-- Nút phụ TikTok: Sao chép link & Xem mã QR -->
+        <div class="bio-sub-actions">
+          <button type="button" class="sub-action-btn" id="btn-copy-tiktok" title="Sao chép link TikTok">
+            <span>Sao chép link TikTok</span>
+          </button>
+          <button type="button" class="sub-action-btn" id="btn-qr-tiktok" title="Xem mã QR TikTok">
+            <span>Mã QR TikTok</span>
+          </button>
+        </div>
       </div>
 
       <!-- 4. Nút Mở bằng Trình duyệt ngoài (Safari / Chrome) -->
@@ -208,13 +228,13 @@
       <button class="modal-close-btn" id="modal-close" aria-label="Đóng">&times;</button>
       <div class="modal-header">
         <h3 id="modal-qr-title">Mã QR Nhóm ZL</h3>
-        <p class="modal-subtitle">Chụp màn hình mã này để quét vào nhóm</p>
+        <p class="modal-subtitle" id="modal-qr-subtitle">Chụp màn hình mã này để quét vào nhóm</p>
       </div>
 
       <div class="qr-container">
         <div class="qr-frame">
-          <img id="qr-image" src="/api/qr" alt="Mã QR Nhóm ZL" class="qr-code-img">
-          <div class="qr-loading" id="qr-loading">Đang tải mã QR...</div>
+          <img id="qr-image" src="/api/qr" alt="Mã QR" class="qr-code-img">
+          <div class="qr-loading hidden" id="qr-loading">Đang tải mã QR...</div>
         </div>
       </div>
 
@@ -225,7 +245,7 @@
         </div>
         <div class="step-item">
           <span class="step-num">2</span>
-          <span>Mở <b>ZL</b> ➔ Bấm <b>Quét mã QR</b> ➔ Chọn ảnh vừa chụp</span>
+          <span id="modal-step-2">Mở <b>ZL</b> ➔ Bấm <b>Quét mã QR</b> ➔ Chọn ảnh vừa chụp</span>
         </div>
       </div>
 

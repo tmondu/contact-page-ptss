@@ -283,8 +283,9 @@ html, body {
   transform: translateX(3px);
 }
 
-/* Sub Actions for Zalo Anti-Block */
-.zalo-sub-actions {
+/* Sub Actions for Zalo, Facebook, TikTok */
+.zalo-sub-actions,
+.bio-sub-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;

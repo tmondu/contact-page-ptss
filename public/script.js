@@ -8,6 +8,9 @@
   // State
   let appConfig = window.APP_CONFIG || {};
   let currentZaloUrl = appConfig.links?.zaloGroup?.url || 'https://zalo.me/g/uqw94c3seuayvmlji6lp';
+  let currentFbUrl = appConfig.links?.facebook?.url || 'https://facebook.com';
+  let currentTiktokUrl = appConfig.links?.tiktok?.url || 'https://tiktok.com';
+  let currentModalType = 'zalo';
   let toastTimeout = null;
 
   // DOM Elements
@@ -24,6 +27,10 @@
   const btnZaloMain = document.getElementById('btn-zalo-main');
   const btnCopyZalo = document.getElementById('btn-copy-zalo');
   const btnQrModal = document.getElementById('btn-qr-modal');
+  const btnCopyFb = document.getElementById('btn-copy-fb');
+  const btnQrFb = document.getElementById('btn-qr-fb');
+  const btnCopyTiktok = document.getElementById('btn-copy-tiktok');
+  const btnQrTiktok = document.getElementById('btn-qr-tiktok');
   const modalCopyLink = document.getElementById('modal-copy-link');
   const modalOpenLink = document.getElementById('modal-open-link');
   const btnSharePage = document.getElementById('btn-share-page');
@@ -123,6 +130,7 @@
     // Links: Facebook
     if (appConfig.links?.facebook) {
       const fb = appConfig.links.facebook;
+      currentFbUrl = fb.url;
       if (btnFbMain) btnFbMain.href = fb.url;
 
       const fbTitle = document.getElementById('fb-title');
@@ -135,6 +143,7 @@
     // Links: TikTok
     if (appConfig.links?.tiktok) {
       const tt = appConfig.links.tiktok;
+      currentTiktokUrl = tt.url;
       if (btnTiktokMain) btnTiktokMain.href = tt.url;
 
       const ttTitle = document.getElementById('tiktok-title');
@@ -206,15 +215,52 @@
   }
 
   /**
-   * 6. QR Code Modal Management
+   * 6. QR Code Modal Management (ZL, Facebook, TikTok)
    */
-  function openQrModal() {
+  function openQrModal(type = 'zalo') {
+    currentModalType = type;
     if (!qrModal) return;
+
+    const modalTitle = document.getElementById('modal-qr-title');
+    const modalSubtitle = document.getElementById('modal-qr-subtitle');
+    const modalStep2 = document.getElementById('modal-step-2');
+
+    let targetUrl = currentZaloUrl;
+    let titleText = 'Mã QR Nhóm ZL';
+    let subText = 'Chụp màn hình mã này để quét vào nhóm';
+    let step2Text = 'Mở <b>ZL</b> ➔ Bấm <b>Quét mã QR</b> ➔ Chọn ảnh vừa chụp';
+    let copyBtnText = 'Sao chép link ZL';
+    let openBtnText = 'Mở qua ZL';
+
+    if (type === 'facebook') {
+      targetUrl = currentFbUrl;
+      titleText = 'Mã QR Facebook';
+      subText = 'Quét mã để kết nối trang Facebook';
+      step2Text = 'Mở <b>Facebook</b> hoặc <b>Camera điện thoại</b> để quét';
+      copyBtnText = 'Sao chép link FB';
+      openBtnText = 'Mở Facebook';
+    } else if (type === 'tiktok') {
+      targetUrl = currentTiktokUrl;
+      titleText = 'Mã QR TikTok';
+      subText = 'Quét mã để theo dõi kênh TikTok';
+      step2Text = 'Mở <b>TikTok</b> ➔ Hồ sơ ➔ Tìm bạn bè bằng mã QR';
+      copyBtnText = 'Sao chép link TikTok';
+      openBtnText = 'Mở TikTok';
+    }
+
+    if (modalTitle) modalTitle.textContent = titleText;
+    if (modalSubtitle) modalSubtitle.textContent = subText;
+    if (modalStep2) modalStep2.innerHTML = step2Text;
+    if (modalCopyLink) modalCopyLink.textContent = copyBtnText;
+    if (modalOpenLink) {
+      modalOpenLink.textContent = openBtnText;
+      modalOpenLink.href = targetUrl;
+    }
 
     if (qrImage) {
       if (qrLoading) qrLoading.classList.remove('hidden');
 
-      const qrApiUrl = `/api/qr?text=${encodeURIComponent(currentZaloUrl)}`;
+      const qrApiUrl = `/api/qr?text=${encodeURIComponent(targetUrl)}`;
       qrImage.src = qrApiUrl;
 
       qrImage.onload = () => {
@@ -223,7 +269,7 @@
 
       qrImage.onerror = () => {
         // Fallback to QR server if node qr endpoint is unreachable
-        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(currentZaloUrl)}`;
+        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(targetUrl)}`;
         if (qrLoading) qrLoading.classList.add('hidden');
       };
     }
@@ -290,7 +336,29 @@
       });
     }
 
-    // Copy ZL Link buttons
+    // QR Modal triggers (ZL, FB, TikTok)
+    if (btnQrModal) {
+      btnQrModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        openQrModal('zalo');
+      });
+    }
+
+    if (btnQrFb) {
+      btnQrFb.addEventListener('click', (e) => {
+        e.preventDefault();
+        openQrModal('facebook');
+      });
+    }
+
+    if (btnQrTiktok) {
+      btnQrTiktok.addEventListener('click', (e) => {
+        e.preventDefault();
+        openQrModal('tiktok');
+      });
+    }
+
+    // Copy Link buttons (ZL, FB, TikTok)
     if (btnCopyZalo) {
       btnCopyZalo.addEventListener('click', (e) => {
         e.preventDefault();
@@ -301,21 +369,33 @@
       });
     }
 
-    if (modalCopyLink) {
-      modalCopyLink.addEventListener('click', (e) => {
+    if (btnCopyFb) {
+      btnCopyFb.addEventListener('click', (e) => {
         e.preventDefault();
-        copyToClipboard(
-          currentZaloUrl,
-          'Đã sao chép link nhóm ZL!'
-        );
+        copyToClipboard(currentFbUrl, 'Đã sao chép link Facebook!');
       });
     }
 
-    // QR Modal triggers
-    if (btnQrModal) {
-      btnQrModal.addEventListener('click', (e) => {
+    if (btnCopyTiktok) {
+      btnCopyTiktok.addEventListener('click', (e) => {
         e.preventDefault();
-        openQrModal();
+        copyToClipboard(currentTiktokUrl, 'Đã sao chép link TikTok!');
+      });
+    }
+
+    if (modalCopyLink) {
+      modalCopyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        let targetUrl = currentZaloUrl;
+        let msg = 'Đã sao chép link nhóm ZL!';
+        if (currentModalType === 'facebook') {
+          targetUrl = currentFbUrl;
+          msg = 'Đã sao chép link Facebook!';
+        } else if (currentModalType === 'tiktok') {
+          targetUrl = currentTiktokUrl;
+          msg = 'Đã sao chép link TikTok!';
+        }
+        copyToClipboard(targetUrl, msg);
       });
     }
 
