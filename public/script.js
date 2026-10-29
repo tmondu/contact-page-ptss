@@ -446,29 +446,53 @@
       });
     }
 
-    // ZL CTA Click Handling (Safe from TikTok block, no custom scheme)
+    // Primary CTAs Click Handling (Protected from TikTok in-app block)
     if (btnZaloMain) {
-      btnZaloMain.addEventListener('click', handleZaloClick);
+      btnZaloMain.addEventListener('click', (e) => {
+        handleInAppSafeClick(e, currentZaloUrl, 'ZL');
+      });
+    }
+
+    if (btnFbMain) {
+      btnFbMain.addEventListener('click', (e) => {
+        handleInAppSafeClick(e, currentFbUrl, 'Facebook');
+      });
+    }
+
+    if (btnTiktokMain) {
+      btnTiktokMain.addEventListener('click', (e) => {
+        handleInAppSafeClick(e, currentTiktokUrl, 'TikTok');
+      });
     }
 
     if (modalOpenLink) {
-      modalOpenLink.addEventListener('click', handleZaloClick);
+      modalOpenLink.addEventListener('click', (e) => {
+        let targetUrl = currentZaloUrl;
+        let name = 'ZL';
+        if (currentModalType === 'facebook') {
+          targetUrl = currentFbUrl;
+          name = 'Facebook';
+        } else if (currentModalType === 'tiktok') {
+          targetUrl = currentTiktokUrl;
+          name = 'TikTok';
+        }
+        handleInAppSafeClick(e, targetUrl, name);
+      });
     }
   }
 
   /**
-   * Click handler for ZL button:
-   * - In TikTok iOS: Prevent white shield block by copying link and showing Safari guide
-   * - Elsewhere: Standard web navigation to https://zalo.me
+   * Safe click handler for links inside TikTok in-app browser:
+   * - In TikTok: Prevent white security block screen, copy link, and show breakout guide
+   * - Elsewhere: Standard web navigation to target URL
    */
-  function handleZaloClick(e) {
+  function handleInAppSafeClick(e, targetUrl, platformName) {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isTikTok = /TikTok|musical_ly|BytedanceWebview|ByteLocale/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
-    if (isTikTok && isIOS) {
+    if (isTikTok) {
       if (e) e.preventDefault();
-      copyToClipboard(currentZaloUrl, 'Đã sao chép link ZL! Hãy mở bằng Safari theo hướng dẫn.');
+      copyToClipboard(targetUrl, `Đã sao chép link ${platformName}! Hãy mở bằng Safari theo hướng dẫn.`);
       openBrowserGuide();
     }
   }
