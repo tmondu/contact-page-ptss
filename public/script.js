@@ -14,8 +14,6 @@
   let toastTimeout = null;
 
   // DOM Elements
-  const tiktokBanner = document.getElementById('tiktok-banner');
-  const closeBannerBtn = document.getElementById('close-banner');
   const qrModal = document.getElementById('qr-modal');
   const modalCloseBtn = document.getElementById('modal-close');
   const qrImage = document.getElementById('qr-image');
@@ -39,50 +37,6 @@
   const btnOpenBrowser = document.getElementById('btn-open-browser');
   const browserGuideOverlay = document.getElementById('browser-guide-overlay');
   const btnCloseGuide = document.getElementById('btn-close-guide');
-
-  /**
-   * 1. Detect In-App Browsers (TikTok Webview) & Show Floating Bubble Guide
-   */
-  let bannerDismissTimeout = null;
-
-  function dismissTikTokBanner() {
-    if (!tiktokBanner || tiktokBanner.classList.contains('hidden') || tiktokBanner.classList.contains('bubble-suck-up')) return;
-    if (bannerDismissTimeout) clearTimeout(bannerDismissTimeout);
-    tiktokBanner.classList.add('bubble-suck-up');
-    sessionStorage.setItem('ptss_tiktok_banner_dismissed', 'true');
-    setTimeout(() => {
-      tiktokBanner.classList.add('hidden');
-      tiktokBanner.classList.remove('bubble-suck-up');
-    }, 650);
-  }
-
-  function checkInAppBrowser() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const isTikTok = /TikTok|musical_ly|BytedanceWebview|ByteLocale/i.test(ua);
-    const isDismissed = sessionStorage.getItem('ptss_tiktok_banner_dismissed') === 'true';
-
-    if (isTikTok && !isDismissed && tiktokBanner) {
-      tiktokBanner.classList.remove('hidden');
-
-      // Auto suck-up like a bubble after 4.2 seconds
-      bannerDismissTimeout = setTimeout(() => {
-        dismissTikTokBanner();
-      }, 4200);
-    }
-
-    if (closeBannerBtn) {
-      closeBannerBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dismissTikTokBanner();
-      });
-    }
-
-    if (tiktokBanner) {
-      tiktokBanner.addEventListener('click', () => {
-        dismissTikTokBanner();
-      });
-    }
-  }
 
   /**
    * 2. Fetch live configuration from server (Railway Environment Variables)
@@ -523,7 +477,6 @@
 
   // Initialize
   document.addEventListener('DOMContentLoaded', () => {
-    checkInAppBrowser();
     setupEventListeners();
     loadConfig();
   });
