@@ -199,22 +199,30 @@ html, body {
 .bio-icon-wrap {
   width: 44px;
   height: 44px;
+  max-width: 44px;
+  max-height: 44px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
 }
 
 .zl-icon-bg {
   background: #f0f6ff;
 }
 
+.bio-icon-wrap img,
 .bio-custom-logo {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  display: block;
+  width: 34px !important;
+  height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  object-fit: contain !important;
+  display: block !important;
+  flex-shrink: 0;
 }
 
 .zalo-icon-bg {

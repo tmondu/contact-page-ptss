@@ -53,8 +53,13 @@ app.use((req, res, next) => {
 
 // Serve static assets
 app.use(express.static(path.join(__dirname, 'public'), {
-  maxAge: '1h',
-  etag: true
+  maxAge: 0,
+  etag: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html') || filePath.endsWith('.css') || filePath.endsWith('.js')) {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    }
+  }
 }));
 
 // API to serve live config (can be updated via Railway Environment Variables)
