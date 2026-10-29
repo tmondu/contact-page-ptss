@@ -1,0 +1,26 @@
+{
+  "name": "contact-page-ptss",
+  "version": "1.0.0",
+  "description": "Trang liên hệ Bio Contact chuyên nghiệp tối ưu cho TikTok & chống chặn link Zalo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "biolink",
+    "contact-page",
+    "tiktok",
+    "zalo",
+    "railway"
+  ],
+  "author": "PTSS",
+  "license": "MIT"
+}
