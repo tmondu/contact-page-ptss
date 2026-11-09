@@ -5,6 +5,9 @@ const QRCode = require('qrcode');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Enable trust proxy for correct protocol (https) and host detection on Railway / reverse proxy
+app.set('trust proxy', true);
+
 // Default configuration with fallback
 const config = {
   brandName: process.env.BRAND_NAME || 'PThamSS',
@@ -49,6 +52,49 @@ app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
+});
+
+// Google Search Console Site Verification
+app.get('/googlec0756ca69d938b29.html', (req, res) => {
+  res.type('text/html').send('google-site-verification: googlec0756ca69d938b29.html');
+});
+
+// Dynamic Sitemap generator (supports SITE_URL env or auto-detects current host)
+app.get('/sitemap.xml', (req, res) => {
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+  const host = req.headers['x-forwarded-host'] || req.get('host');
+  const siteUrl = (process.env.SITE_URL || `${protocol}://${host}`).replace(/\/$/, '');
+  const today = new Date().toISOString().split('T')[0];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${siteUrl}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+
+  res.header('Content-Type', 'application/xml; charset=utf-8');
+  res.header('Cache-Control', 'public, max-age=3600');
+  res.send(xml);
+});
+
+// Dynamic robots.txt
+app.get('/robots.txt', (req, res) => {
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'https';
+  const host = req.headers['x-forwarded-host'] || req.get('host');
+  const siteUrl = (process.env.SITE_URL || `${protocol}://${host}`).replace(/\/$/, '');
+
+  const content = `User-agent: *
+Allow: /
+
+Sitemap: ${siteUrl}/sitemap.xml
+`;
+  res.header('Content-Type', 'text/plain; charset=utf-8');
+  res.header('Cache-Control', 'public, max-age=3600');
+  res.send(content);
 });
 
 // Serve static assets
