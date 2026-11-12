@@ -39,6 +39,13 @@ const config = {
       url: process.env.TIKTOK_URL || 'https://tiktok.com',
       badge: 'TikTok',
       isPrimary: false
+    },
+    website: {
+      title: 'Truy Cập Website',
+      subtitle: 'Website chính thức của chúng mình',
+      url: process.env.WEBSITE_URL || 'https://www.mondu.online/',
+      badge: 'Website',
+      isPrimary: false
     }
   },
 
@@ -134,6 +141,12 @@ app.get('/api/config', (req, res) => {
         url: process.env.TIKTOK_URL || config.links.tiktok.url,
         title: process.env.TIKTOK_TITLE || config.links.tiktok.title,
         subtitle: process.env.TIKTOK_SUBTITLE || config.links.tiktok.subtitle
+      },
+      website: {
+        ...config.links.website,
+        url: process.env.WEBSITE_URL || config.links.website.url,
+        title: process.env.WEBSITE_TITLE || config.links.website.title,
+        subtitle: process.env.WEBSITE_SUBTITLE || config.links.website.subtitle
       }
     },
     hotline: process.env.HOTLINE || config.hotline,

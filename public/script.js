@@ -10,6 +10,7 @@
   let currentZaloUrl = appConfig.links?.zaloGroup?.url || 'https://zalo.me/g/uqw94c3seuayvmlji6lp';
   let currentFbUrl = appConfig.links?.facebook?.url || 'https://facebook.com';
   let currentTiktokUrl = appConfig.links?.tiktok?.url || 'https://tiktok.com';
+  let currentWebsiteUrl = appConfig.links?.website?.url || 'https://www.mondu.online/';
   let currentModalType = 'zalo';
   let toastTimeout = null;
 
@@ -29,6 +30,9 @@
   const btnQrFb = document.getElementById('btn-qr-fb');
   const btnCopyTiktok = document.getElementById('btn-copy-tiktok');
   const btnQrTiktok = document.getElementById('btn-qr-tiktok');
+  const btnCopyWebsite = document.getElementById('btn-copy-website');
+  const btnQrWebsite = document.getElementById('btn-qr-website');
+  const btnWebsiteMain = document.getElementById('btn-website-main');
   const modalCopyLink = document.getElementById('modal-copy-link');
   const modalOpenLink = document.getElementById('modal-open-link');
   const btnSharePage = document.getElementById('btn-share-page');
@@ -130,6 +134,19 @@
       if (ttTitle && tt.title) ttTitle.textContent = tt.title;
       if (ttSubtitle && tt.subtitle) ttSubtitle.textContent = tt.subtitle;
     }
+
+    // Links: Website
+    if (appConfig.links?.website) {
+      const wb = appConfig.links.website;
+      currentWebsiteUrl = wb.url;
+      if (btnWebsiteMain) btnWebsiteMain.href = wb.url;
+
+      const wbTitle = document.getElementById('website-title');
+      const wbSubtitle = document.getElementById('website-subtitle');
+
+      if (wbTitle && wb.title) wbTitle.textContent = wb.title;
+      if (wbSubtitle && wb.subtitle) wbSubtitle.textContent = wb.subtitle;
+    }
   }
 
   /**
@@ -224,6 +241,13 @@
       step2Text = 'Mở <b>TikTok</b> ➔ Hồ sơ ➔ Tìm bạn bè bằng mã QR';
       copyBtnText = 'Sao chép link TikTok';
       openBtnText = 'Mở TikTok';
+    } else if (type === 'website') {
+      targetUrl = currentWebsiteUrl;
+      titleText = 'Mã QR Website';
+      subText = 'Quét mã để truy cập website';
+      step2Text = 'Mở <b>Camera điện thoại</b> và quét mã để vào website';
+      copyBtnText = 'Sao chép link Web';
+      openBtnText = 'Mở Website';
     }
 
     if (modalTitle) modalTitle.textContent = titleText;
@@ -336,6 +360,13 @@
       });
     }
 
+    if (btnQrWebsite) {
+      btnQrWebsite.addEventListener('click', (e) => {
+        e.preventDefault();
+        openQrModal('website');
+      });
+    }
+
     // Copy Link buttons (ZL, FB, TikTok)
     if (btnCopyZalo) {
       btnCopyZalo.addEventListener('click', (e) => {
@@ -361,6 +392,13 @@
       });
     }
 
+    if (btnCopyWebsite) {
+      btnCopyWebsite.addEventListener('click', (e) => {
+        e.preventDefault();
+        copyToClipboard(currentWebsiteUrl, 'Đã sao chép link Website!');
+      });
+    }
+
     if (modalCopyLink) {
       modalCopyLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -372,6 +410,9 @@
         } else if (currentModalType === 'tiktok') {
           targetUrl = currentTiktokUrl;
           msg = 'Đã sao chép link TikTok!';
+        } else if (currentModalType === 'website') {
+          targetUrl = currentWebsiteUrl;
+          msg = 'Đã sao chép link Website!';
         }
         copyToClipboard(targetUrl, msg);
       });
@@ -443,6 +484,12 @@
       });
     }
 
+    if (btnWebsiteMain) {
+      btnWebsiteMain.addEventListener('click', (e) => {
+        handleInAppSafeClick(e, currentWebsiteUrl, 'Website');
+      });
+    }
+
     if (modalOpenLink) {
       modalOpenLink.addEventListener('click', (e) => {
         let targetUrl = currentZaloUrl;
@@ -453,6 +500,9 @@
         } else if (currentModalType === 'tiktok') {
           targetUrl = currentTiktokUrl;
           name = 'TikTok';
+        } else if (currentModalType === 'website') {
+          targetUrl = currentWebsiteUrl;
+          name = 'Website';
         }
         handleInAppSafeClick(e, targetUrl, name);
       });

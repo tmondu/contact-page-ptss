@@ -33,6 +33,14 @@ window.APP_CONFIG = {
       subtitle: "Video chia sẻ & cập nhật xu hướng hàng ngày",
       url: "https://tiktok.com",
       badge: "TikTok"
+    },
+
+    // 4. Website
+    website: {
+      title: "Truy Cập Website",
+      subtitle: "Website chính thức của chúng mình",
+      url: "https://www.mondu.online/",
+      badge: "Website"
     }
   },
 

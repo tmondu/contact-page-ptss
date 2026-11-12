@@ -189,6 +189,10 @@ html, body {
   border: 1px solid #e2e8f0;
 }
 
+.website-icon-bg {
+  background: #eff6ff;
+}
+
 .bio-svg {
   width: 28px;
   height: 28px;
